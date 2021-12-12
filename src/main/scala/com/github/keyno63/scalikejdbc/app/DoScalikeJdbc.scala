@@ -84,9 +84,9 @@ class DoScalikeJdbc {
     DB readOnly { implicit session =>
       withSQL {
         selectFrom(Issue.as(i))
-          .orderBy(i.id)
           .where
           .eq(i.id, 1)
+          .orderBy(i.id)
           .union(
             selectFrom(Issue.as(i)).where
               .eq(i.id, 1)
