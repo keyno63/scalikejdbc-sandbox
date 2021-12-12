@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  scalikejdbc_postgres:
+    image: postgres:11
+    container_name: scalikejdbc_postgres
+    ports:
+      - "6432:5432"
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_DB: world
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    hostname: postgres
+    restart: always
+    user: root
+    stdin_open: true
+
+  scalikejdbc_mysql:
+    container_name: mysql_host
+    image: mysql:8.0.27
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: world
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: password1
+      TZ: Asia/Tokyo
+    volumes:
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "6306:3306"
+    expose:
+      - "3306"
+    command:
+      --explicit_defaults_for_timestamp=1
+    hostname: mysql
+    restart: always
+    user: root
+    stdin_open: true
