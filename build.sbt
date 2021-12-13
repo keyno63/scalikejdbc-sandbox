@@ -17,6 +17,7 @@ lazy val root = (project in file("."))
       "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion
     ) ++ Seq(
       "org.postgresql" % "postgresql" % "42.3.1",
+      "mysql" % "mysql-connector-java" % "8.0.27",
       "org.scalikejdbc" %% "scalikejdbc" % scalikeJdbcVersion,
       "org.scalikejdbc" %% "scalikejdbc-config" % scalikeJdbcVersion,
       "org.scalikejdbc" %% "scalikejdbc-interpolation" % scalikeJdbcVersion,
