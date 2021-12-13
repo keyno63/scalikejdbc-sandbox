@@ -39,3 +39,25 @@ services:
     restart: always
     user: root
     stdin_open: true
+
+  scalikejdbc_mysql57:
+    container_name: mysql_host_57
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: world
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: password1
+      TZ: Asia/Tokyo
+    volumes:
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "7306:3306"
+    expose:
+      - "3306"
+    command:
+      --explicit_defaults_for_timestamp=1
+    hostname: mysql
+    restart: always
+    user: root
+    stdin_open: true
